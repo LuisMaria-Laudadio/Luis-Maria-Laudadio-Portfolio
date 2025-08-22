@@ -1,0 +1,149 @@
+.softGrid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-content: center;   /* centra las columnas */
+  max-width: 1200px;         /* limita el ancho total */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.softCard:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.softHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.softTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.softEmoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.badge {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+.badgeAdv {
+  background: rgba(251, 189, 35, 0.18);
+  border-color: rgba(251, 189, 35, 0.32);
+  color: #fbbd23;
+}
+.badgeMid {
+  background: rgba(102, 119, 255, 0.18);
+  border-color: rgba(102, 119, 255, 0.32);
+  color: #aab2ff;
+}
+.badgeBase {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.skillMeter {
+  position: relative;
+  height: 8px;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.skillFill {
+  height: 100%;
+  background: linear-gradient(90deg, #fbbd23, #66e6ff);
+  box-shadow: 0 0 10px rgba(251, 189, 35, 0.4);
+  width: 0;
+  animation: fillIn 0.8s ease forwards;
+}
+@keyframes fillIn {
+  from {
+    width: 0;
+  }
+}
+
+.softGrid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-content: center;   /* centra las columnas */
+  max-width: 1200px;         /* limita el ancho total */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1000px) {
+  .softGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .softGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Animación de aparición */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.softCard {
+  padding: 18px;
+  border-radius: 18px;
+  transition: transform 0.25s ease, background 0.25s ease;
+  opacity: 0; /* arranca invisible */
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Que las cards aparezcan en cascada */
+.softCard:nth-child(1) { animation-delay: 0.1s; }
+.softCard:nth-child(2) { animation-delay: 0.2s; }
+.softCard:nth-child(3) { animation-delay: 0.3s; }
+.softCard:nth-child(4) { animation-delay: 0.4s; }
+.softCard:nth-child(5) { animation-delay: 0.5s; }
+.softCard:nth-child(6) { animation-delay: 0.6s; }
+
+.softCard:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Responsive patch */
+.softGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 560px) {
+  .softGrid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 992px) {
+  .softGrid { grid-template-columns: 1fr 1fr 1fr; }
+}
+.softCard {
+  padding: 14px;
+  border-radius: 14px;
+}
+

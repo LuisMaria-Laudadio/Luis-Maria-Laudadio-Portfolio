@@ -1,0 +1,73 @@
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  border-radius: 18px;
+  padding: 18px;
+}
+.list {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.9;
+}
+
+.avatarWrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+.avatar {
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+  transform: translateZ(0);
+}
+.avatarGlow {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  filter: blur(24px);
+  z-index: 1;
+  background: conic-gradient(
+    from 0deg,
+    rgba(251, 189, 35, 0.55),
+    rgba(102, 119, 255, 0.45),
+    rgba(102, 230, 255, 0.45),
+    rgba(251, 189, 35, 0.55)
+  );
+  animation: spin 12s linear infinite, pulseGlow 2.6s ease-in-out infinite;
+  opacity: 0.9;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+

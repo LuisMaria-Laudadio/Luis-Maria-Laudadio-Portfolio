@@ -1,38 +1,317 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap");
+
+:root { min-width: 360px; }
+html, body { overflow-x: hidden; }
+img, video { max-width: 100%; height: auto; display: block; }
+
+
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: #0b1020;
+  color: #fff;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto,
+    Arial;
+}
+.app {
+  min-height: 100%;
+  position: relative;
+}
+
+/* Contenedores y helpers */
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+.center {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.section {
+  padding: 80px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.section {
+  scroll-margin-top: 88px;
+} 
+
+
+.h2 {
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  margin: 0;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+.muted {
+  color: rgba(255, 255, 255, 0.75);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0.6rem 0 0;
+}
+.title-fixed {
+  display: inline-block;
+  min-height: 1.2em; 
+  width: 20ch; 
+  white-space: nowrap;
+  text-align: center;
+}
+.lead {
+  max-width: 720px;
+  margin: 16px auto 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+.cta {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 12px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 28px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Botones globales */
+.btn {
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.btn-primary {
+  background: #fbbd23;
+  color: #000;
+  border-color: #fbbd23;
+}
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Fondo animado global (burbujas + ruido) */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+.blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.55;
+}
+.blob1 {
+  width: 320px;
+  height: 320px;
+  left: -70px;
+  top: -70px;
+  background: linear-gradient(135deg, #f0f, #0ff);
+  animation: move1 18s ease-in-out infinite;
+}
+.blob2 {
+  width: 360px;
+  height: 360px;
+  right: -90px;
+  top: 40px;
+  background: linear-gradient(135deg, #ffcc00, #ff66aa);
+  animation: move2 22s ease-in-out infinite;
+}
+.blob3 {
+  width: 420px;
+  height: 420px;
+  left: 35%;
+  bottom: -120px;
+  background: linear-gradient(135deg, #66e6ff, #6677ff);
+  animation: move3 26s ease-in-out infinite;
+}
+@keyframes move1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
   }
+  25% {
+    transform: translate(60px, -30px) scale(1.2);
+  }
+  50% {
+    transform: translate(0, -60px) scale(0.9);
+  }
+  75% {
+    transform: translate(-80px, 20px) scale(1.1);
+  }
+}
+@keyframes move2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1.1);
+  }
+  25% {
+    transform: translate(-80px, 40px) scale(0.95);
+  }
+  50% {
+    transform: translate(30px, 80px) scale(1.15);
+  }
+  75% {
+    transform: translate(70px, -20px) scale(1);
+  }
+}
+@keyframes move3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(0.9);
+  }
+  25% {
+    transform: translate(40px, 60px) scale(1.05);
+  }
+  50% {
+    transform: translate(-60px, 0) scale(1.2);
+  }
+  75% {
+    transform: translate(0, -80px) scale(0.95);
+  }
+}
+
+/* Vidrio (se usa en varios módulos) */
+.glass {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Animación “down” genérica (flecha para bajar) */
+.down {
+  margin-top: 36px;
+  opacity: 0.7;
+  animation: bounce 1.4s infinite;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Reveal genérico (usar con hook de IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.48s ease, transform 0.48s ease;
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Chips & caret (utilidades globales) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: #22c55e;
+  display: inline-block;
+  animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.caret {
+  position: relative;
+}
+.caret::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 1.2em;
+  background: currentColor;
+  right: -6px;
+  top: 0;
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
   to {
-    transform: rotate(360deg);
+    visibility: hidden;
   }
+}
+
+/* Footer (si no lo modularizás) */
+.footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 26px 0;
+}
+
+/* Secciones con anclaje directo (por si querés asegurar espacio) */
+#tecnologias,
+#contacto {
+  min-height: 50vh;
+  padding-bottom: 140px; /* extra por offset del header y final de página */
+}
+
+
+
+/* offset para el contenido */
+.mainWrap {
+  padding-top: 88px;
+}
+@media (max-width: 768px) {
+  .mainWrap { padding-top: 72px; }
 }

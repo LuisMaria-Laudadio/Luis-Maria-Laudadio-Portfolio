@@ -1,0 +1,112 @@
+:root { min-width: 360px; }
+html, body { overflow-x: hidden; }
+
+/* ========= Desktop ========= */
+.navWrap{
+  position: fixed;         /* fijo en desktop */
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.nav{
+  /* GRID: marca | espacio | links/hamb */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  border-radius: 18px;
+  padding: 10px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;            /* evita desbordes dentro del grid */
+}
+
+/* Marca */
+.brand{
+  color:#fff; text-decoration:none; cursor:pointer;
+  background:none; border:none; text-align:left;
+}
+.brandFull{ font-weight:800; font-size:1rem; }
+.brandShort{ display:none; }
+
+/* Links (col 3 en desktop, alineados a la derecha) */
+.linksWrap{
+  grid-column: 3;
+  justify-self: end;
+  max-width: 100%;
+  min-width: 0;
+}
+.links{
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: nowrap;          /* una sola línea */
+  white-space: nowrap;
+  overflow-x: auto;           /* si no entran, deslizan sin romperse */
+  min-width: 0;
+}
+.links a{
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  position: relative;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.links a:hover{ background: rgba(255,255,255,.08); }
+.active{ color:#fbbd23; }
+.links a.active::after{
+  content:"";
+  position:absolute; left:10px; right:10px; bottom:2px; height:2px;
+  background:#fbbd23; border-radius:2px;
+}
+
+/* Hamburguesa (oculta en desktop) */
+.hamb{ display:none; background:none; border:none; }
+.hamb span{
+  display:block; width:22px; height:2px; background:#fff;
+  border-radius:2px; margin:4px 0;
+}
+
+/* ========= Mobile (≤760px) ========= */
+@media (max-width: 760px){
+  .navWrap{
+    position: sticky;      /* sticky en mobile -> el menú empuja el hero */
+    top: 0;
+    padding: max(12px, env(safe-area-inset-top)) 12px 12px;
+  }
+
+  .brandFull{ display:none; }
+  .brandShort{ display:inline-block; font-weight:800; font-size:1rem; letter-spacing:.02em; }
+
+  .hamb{ display:block; grid-column: 3; }
+
+  /* Acordeón bajo la barra */
+  .linksWrap{
+    grid-column: 1 / -1;     /* ocupa todo el ancho */
+    justify-self: stretch;
+    overflow: hidden;
+    max-height: 0;           /* colapsado */
+    transition: max-height .28s ease;
+    width: 100%;
+  }
+  .linksWrap.open{ max-height: 260px; }  /* desplegado */
+
+  .links{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin-top: 8px;
+    background: rgba(0,0,0,.45);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+    padding: 10px;
+    overflow: visible;        /* evita scroll lateral */
+  }
+  .links a{ padding: 12px; text-align: left; }
+}
+
+/* Hardening anti-overflow */
+.navWrap, .nav, .linksWrap, .links { max-width: 100%; box-sizing: border-box; }

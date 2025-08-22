@@ -1,0 +1,110 @@
+.technologies {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  margin: 3rem auto;
+  width: 100%;
+  max-width: 1000px;
+  height: 140px; /* ajustá según tamaño logos */
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 18s linear infinite;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1.5rem;
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+  transition: transform 0.3s ease;
+}
+
+.slide img:hover {
+  transform: scale(1.1);
+}
+
+/* Animación infinita */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Fades en las esquinas */
+.fade {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fade.left {
+  left: 0;
+  background: linear-gradient(to right, #0a1f44, transparent);
+}
+
+.fade.right {
+  right: 0;
+  background: linear-gradient(to left, #0a1f44, transparent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel {
+    height: 100px;
+  }
+  .slide {
+    width: 100px;
+    height: 100px;
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    height: 80px;
+  }
+  .slide {
+    width: 80px;
+    height: 80px;
+    margin: 0 0.5rem;
+  }
+}
+
+/* Responsive patch */
+.techGrid, .list, .badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 420px) {
+  .techGrid, .list, .badges { grid-template-columns: 1fr; }
+}
+@media (min-width: 768px) {
+  .techGrid, .list, .badges { grid-template-columns: repeat(3, 1fr); }
+}
+.badge, .badgeBase {
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 1.2;
+}
+
