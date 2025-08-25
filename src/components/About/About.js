@@ -24,18 +24,22 @@ export default function About() {
           <div className={`glass ${s.panel} reveal`} style={{ transitionDelay: "120ms" }}>
             <h3 className="h3">Hola, soy Luis</h3>
             <p className="muted">
-              Me especializo en React y en construir productos con una base sólida de componentes,
-              performance y una estética consistente. Disfruto el detalle visual y la micro-interacción.
+             Soy Luis, Desarrollador Frontend con más de 2 años creando productos y enseñando programación en Kodland (EdTech internacional) y 1 año de trabajo freelance. Me especializo en React, JavaScript y CSS moderno, priorizando accesibilidad, performance y UX. Disfruto del detalle visual y las micro-interacciones que hacen que una web se sienta viva. Actualmente estoy estudiando Python y sus librerias para adentrarme en el Análisis de datos para en un futuro hacer machine learning y trabajar con la IA.  
             </p>
             <ul className={s.list}>
-              <li>Stack: React, JavaScript/TypeScript, CSS moderno.</li>
-              <li>Foco: Accesibilidad, responsive, UX y performance.</li>
-              <li>Trabajo: Colaboración, comunicación y entrega constante.</li>
+              <li>Stack: React, JavaScript, HTML, CSS, Git/GitHub, Vercel y Librerias varias.</li>
+              <li>Enfoque: Accesibilidad (WCAG), responsive desde mobile-first y performance medible.</li>
+              <li>Experiencia: +2 años Kodland — clases en vivo, proyectos guiados.</li>
+              <li>Freelance: landings, e-commerce, blogs, weather app entre otros</li>
+              <li>Trabajo: comunicación clara, colaboración y entregas iterativas orientadas a negocio.</li>
             </ul>
 
             <div style={{ marginTop: 16, display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a className="btn btn-primary" href="/cv-luis-laudadio.pdf" download="Luis-Laudadio-CV.pdf">
-                Descargar CV
+              <a className="btn btn-primary" href="/cv/Luis_Maria_Laudadio_CV_ES.pdf" download="Luis_Maria_Laudadio_CV_ES.pdf">
+                Descargar CV (ESP)
+              </a>
+              <a className="btn btn-primary" href="/cv/Luis_Maria_Laudadio_CV_EN.pdf" download="Luis_Maria_Laudadio_CV_EN.pdf">
+                Download CV (ENG)
               </a>
               <button className="btn" onClick={() => {
                 const el = document.getElementById("proyectos");
