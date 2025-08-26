@@ -108,3 +108,37 @@
   line-height: 1.2;
 }
 
+/* ===== Visibilidad por dispositivo ===== */
+.onlyMobile { display: none; }
+.hideMobile { display: block; }
+
+/* Mobile: mostramos GRID + leyenda, ocultamos carrusel */
+@media (max-width: 768px) {
+  .onlyMobile { display: block; }
+  .hideMobile { display: none; }
+}
+
+/* ===== Leyenda del grid ===== */
+.legend {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 8px 0 4px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.legend b {
+  margin-right: 4px;
+}
+
+
+.legend {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  backdrop-filter: none;
+}
+

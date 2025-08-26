@@ -1,0 +1,151 @@
+/* ===== Variables (ajustá a tu paleta) ===== */
+:root {
+  --tech-bg: #121a2d;   /* azul muy oscuro, mate */
+  --tech-gold: #fbbd23; /* dorado */
+  --tech-text: #e9eefb; /* texto en tarjetas */
+}
+
+/* ===== Grid ===== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 12px;
+  padding: 8px 0;
+}
+
+/* ===== Tarjeta base ===== */
+.tech-card {
+  position: relative;
+  display: flex;
+  aspect-ratio: 1 / 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  border-radius: 16px;
+  padding: 12px;
+
+  background: var(--tech-bg);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  color: var(--tech-text);
+  text-align: center;
+
+  /* Para efecto 3D */
+  perspective: 700px;
+  transform-style: preserve-3d;
+
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    background-color .18s ease,
+    opacity .18s ease;
+}
+
+/* Contenido principal (logo) */
+.tech-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform, filter;
+  transition: transform .18s ease, filter .18s ease;
+}
+
+/* Nombre */
+.tech-name {
+  font-size: .8rem;
+  opacity: .95;
+  line-height: 1.1;
+}
+
+/* ===== Estados ===== */
+
+/* Desbloqueada: borde dorado permanente */
+.tech--mastered {
+  border-color: var(--tech-gold);
+}
+
+/* En progreso: tarjeta gris + logo grisado */
+.tech--locked {
+  background: #2a2a2a;   /* gris oscuro mate */
+  border-color: #444;
+}
+.tech--locked .tech-logo {
+  filter: grayscale(100%) opacity(.65);
+}
+
+/* Ocultos: recuadro oscuro; el logo lo definís vos (candado/?) */
+.tech--secret {
+  background: #0d0f18;   /* aún más oscuro */
+  border-color: #333;
+}
+.tech--secret .tech-name { display: none; }
+/* El logo de secret no se modifica (sin filtros): lo que pongas en items es lo que se ve */
+
+/* ===== Overlay (mensaje contextual) ===== */
+.tech-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  font-size: .78rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  backdrop-filter: blur(4px);
+
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+  pointer-events: none;
+}
+
+/* Mostrar overlay en hover/focus */
+@media (hover: hover) and (pointer: fine) {
+  .tech-card:hover .tech-overlay {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+.tech-card:focus-visible .tech-overlay,
+.tech-card:active .tech-overlay {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== Animación de inspección 3D (click/tap) ===== */
+
+/* Se activa con la clase .is-inspecting en el contenedor */
+.is-inspecting .tech-logo {
+  animation: tech-inspect-3d 0.6s ease both;
+}
+
+/* “Respira” el borde dorado al inspeccionar (solo mastered) */
+.is-inspecting.tech--mastered {
+  box-shadow: 0 0 0 2px rgba(251,189,35,0.22);
+  border-color: var(--tech-gold);
+}
+
+/* Keyframes estilo pegatina CS2 */
+@keyframes tech-inspect-3d {
+  0%   { transform: translateZ(0px)   rotateX(0deg)  rotateY(0deg)   scale(1.00); }
+  15%  { transform: translateZ(10px)  rotateX(-2deg) rotateY(-14deg) scale(1.06); }
+  35%  { transform: translateZ(12px)  rotateX( 1deg) rotateY( 12deg) scale(1.08); }
+  55%  { transform: translateZ(14px)  rotateX(-1deg) rotateY(-8deg)  scale(1.09); }
+  75%  { transform: translateZ(10px)  rotateX( 1deg) rotateY( 6deg)  scale(1.07); }
+  100% { transform: translateZ(0px)   rotateX(0deg)  rotateY(0deg)   scale(1.00); }
+}
+
+/* (Opcional) Desactivar el viejo zoom de hover del logo si lo tenías */
+@media (hover: hover) and (pointer: fine) {
+  .tech-card:hover .tech-logo { transform: none; animation: none; }
+}
+
+/* Accesibilidad: reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .is-inspecting .tech-logo { animation: none !important; }
+}
